@@ -10,8 +10,8 @@ See `AGENTS.md` for the standing rules that govern how any agent (or you) should
 
 ## Current status
 
-**Active phase:** Phase 1
-**Last completed phase:** Phase 0
+**Active phase:** Phase 2
+**Last completed phase:** Phase 1
 
 Update these two lines as you progress — this is the fastest way for anyone (including a fresh Antigravity session) to know where the project actually stands.
 
@@ -66,13 +66,13 @@ Not all of this exists yet — it's the target shape. Create directories as the 
 ## Phase 1 — Tire Degradation Engine (rule-based)
 **Goal:** For one driver, one stint: turn raw lap times into a `degradation_score`, `pit_urgency`, and `pace_delta_vs_fresh`.
 
-- [ ] Implement fuel-correction adjustment on raw lap times
-- [ ] Fit a degradation curve per stint (start with linear, evaluate if quadratic/piecewise fits observed falloff better)
-- [ ] Normalize into `degradation_score` (0-1 scale)
-- [ ] Derive `pit_urgency` (low/medium/high) from the score + trend
-- [ ] Test on a single driver's single stint — plot it, sanity check against what you know actually happened in that race
-- [ ] Generalize to loop over all stints for one driver, then all drivers for one race
-- [ ] Write a small unit test or assertion set (e.g. degradation should generally increase within a stint, reset after a pit stop)
+- [x] Implement fuel-correction adjustment on raw lap times
+- [x] Fit a degradation curve per stint (start with linear, evaluate if quadratic/piecewise fits observed falloff better)
+- [x] Normalize into `degradation_score` (0-1 scale)
+- [x] Derive `pit_urgency` (low/medium/high) from the score + trend
+- [x] Test on a single driver's single stint — plot it, sanity check against what you know actually happened in that race
+- [x] Generalize to loop over all stints for one driver, then all drivers for one race
+- [x] Write a small unit test or assertion set (e.g. degradation should generally increase within a stint, reset after a pit stop)
 
 **Deliverable:** given a race + lap number, output `degradation_score` for every car on track. Testable standalone via a CLI script or notebook — no other agents needed yet.
 
