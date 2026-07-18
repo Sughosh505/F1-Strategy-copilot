@@ -55,7 +55,10 @@ def assemble_snapshot(year: int, race: str, lap: int, driver_code: str) -> dict:
             "driver": driver_code,
             "pit_urgency": triggered_car.get("pit_urgency", "low"),
             "degradation_score": triggered_car.get("degradation_score", 0.0),
-            "pace_delta_vs_fresh": triggered_car.get("pace_delta_vs_fresh", 0.0)
+            "pace_delta_vs_fresh": triggered_car.get("pace_delta_vs_fresh", 0.0),
+            "lookahead_degradation_score_next_3_laps": triggered_car.get("lookahead_degradation_score_next_3_laps", triggered_car.get("degradation_score", 0.0)),
+            "lookahead_degradation_score_next_5_laps": triggered_car.get("lookahead_degradation_score_next_5_laps", triggered_car.get("degradation_score", 0.0)),
+            "lookahead_trend_next_3_laps": triggered_car.get("lookahead_trend_next_3_laps", "flat/stable")
         },
         "sc_probability": {
             "next_3_laps": sc_prob.get("sc_vsc_prob_next_3_laps", 0.0),

@@ -26,8 +26,17 @@ class OrchestratorResponse(BaseModel):
     call: Literal["pit_now", "stay_out", "prep_for_sc_window"] = Field(
         description="The ranked strategic call."
     )
+    decision_window: str = Field(
+        description="A window framing (e.g. 'pit within the next 2-3 laps', 'pit immediately', 'stay out indefinitely'). Use window framing ONLY if the lookahead trend supports it."
+    )
     rationale: str = Field(
         description="A 1-2 sentence explanation naming specific snapshot fields."
+    )
+    rejected_alternative: Literal["pit_now", "stay_out", "prep_for_sc_window"] = Field(
+        description="The runner-up call that was considered and rejected."
+    )
+    rejected_alternative_rationale: str = Field(
+        description="A brief explanation of why the runner-up call was rejected, grounded ONLY in specific snapshot fields."
     )
 
 def evaluate_strategy(year: int, race: str, lap: int, driver_code: str) -> dict:
@@ -75,7 +84,13 @@ def evaluate_snapshot(snapshot: dict) -> dict:
         "a pit stop based on SC probability if the driver's `pit_urgency` is ALREADY 'medium' or 'high'. "
         "DO NOT recommend pitting if tires are fresh (low pit_urgency) just because SC probability is elevated.\n"
         "3. TRACEABILITY: Your rationale MUST explicitly name the fields from the snapshot that drove "
-        "your decision (e.g., \"pit_now selected because pit_urgency is high (0.85) and HAM poses an undercut_threat\").\n\n"
+        "your decision (e.g., \"pit_now selected because pit_urgency is high (0.85) and HAM poses an undercut_threat\").\n"
+        "4. DECISION WINDOW: Use the `decision_window` field to express the timing of your call. If the lookahead trend shows "
+        "degradation accelerating into high urgency, you may frame a window like 'pit within the next 2-3 laps'. "
+        "If the trend is flat/stable, default to a single-lap immediate verdict without forcing a window.\n"
+        "5. REJECTED ALTERNATIVE: You must provide the runner-up strategy in `rejected_alternative` and explicitly explain "
+        "why it was rejected in `rejected_alternative_rationale`. This rationale MUST cite specific snapshot fields. "
+        "DO NOT invent justifications, risks, or rivalries not in the snapshot.\n\n"
         "Output your response adhering to the requested JSON schema."
     )
 

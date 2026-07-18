@@ -156,6 +156,20 @@ def compute_driver_degradation(session, driver, current_lap, fuel_effect_per_lap
         f"Pace loss is +{pace_delta:.2f}s vs fresh (degradation rate is {slope*1000:.1f}ms/lap)."
     )
 
+    # Deriving trend for next 3 laps
+    pace_delta_3_laps = max(0.0, slope * (current_tyre_life + 3 - 1))
+    deg_score_3_laps = min(1.0, pace_delta_3_laps / max_loss)
+    
+    pace_delta_5_laps = max(0.0, slope * (current_tyre_life + 5 - 1))
+    deg_score_5_laps = min(1.0, pace_delta_5_laps / max_loss)
+
+    if deg_score_3_laps - degradation_score < 0.05:
+        trend_3_laps = "flat/stable"
+    elif deg_score_3_laps >= 0.7 and degradation_score < 0.7:
+        trend_3_laps = "crossing_into_high_degradation"
+    else:
+        trend_3_laps = "accelerating_degradation"
+
     raw_lap_sec = stint_laps_corrected.loc[stint_laps_corrected['LapNumber'] == current_lap, 'RawLapTimeSec'].values[0]
     corr_lap_sec = stint_laps_corrected.loc[stint_laps_corrected['LapNumber'] == current_lap, 'FuelCorrectedLapTime'].values[0]
 
@@ -170,6 +184,9 @@ def compute_driver_degradation(session, driver, current_lap, fuel_effect_per_lap
         'pace_delta_vs_fresh': pace_delta,
         'degradation_score': degradation_score,
         'pit_urgency': pit_urgency,
+        'lookahead_degradation_score_next_3_laps': deg_score_3_laps,
+        'lookahead_degradation_score_next_5_laps': deg_score_5_laps,
+        'lookahead_trend_next_3_laps': trend_3_laps,
         'basis': basis,
         # Keep clean laps for plotting access if needed
         '_clean_laps_df': clean_laps,

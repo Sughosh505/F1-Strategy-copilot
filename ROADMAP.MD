@@ -10,8 +10,8 @@ See `AGENTS.md` for the standing rules that govern how any agent (or you) should
 
 ## Current status
 
-**Active phase:** Phase 6.5
-**Last completed phase:** Phase 6
+**Active phase:** Phase 7
+**Last completed phase:** Phase 6.5
 
 Update these two lines as you progress — this is the fastest way for anyone (including a fresh Antigravity session) to know where the project actually stands.
 
@@ -144,11 +144,12 @@ Not all of this exists yet — it's the target shape. Create directories as the 
 ## Phase 6.5 — Recommendation Depth: Lookahead + Comparative Reasoning
 **Goal:** Make a single recommendation read as a considered judgment instead of a single-instant verdict. Do this only after Phase 6's core snapshot → recommendation path is working end-to-end — these are refinements to an already-correct pipeline, not new agents.
 
-- [ ] **Multi-lap lookahead:** instead of evaluating `degradation_score` / `pit_urgency` at only the current lap, evaluate the existing Phase 1 degradation curve fits forward 3-5 laps and include the trend in the snapshot (e.g. `degradation_trend_next_3_laps`)
-- [ ] Update the orchestrator prompt/schema so the recommendation can express a *window* ("pit within the next 2-3 laps") rather than only a single-lap verdict, when the data supports it
-- [ ] **"Why not the alternative" reasoning:** extend the orchestrator's structured output to include a brief rejection rationale for the runner-up call (e.g. why `stay_out` was rejected in favor of `pit_now`), grounded in the same snapshot fields — no new numbers invented to justify the rejection
-- [ ] Test both together on a known real decision point: confirm the window framing and the rejected-alternative reasoning both stay traceable to snapshot fields, not free-floating LLM justification
-- [ ] Re-run the "boring lap" test from Phase 6 — confirm lookahead doesn't manufacture false urgency out of a flat trend, and that alternative-rejection reasoning doesn't invent a rivalry that isn't there
+- [x] **Multi-lap lookahead:** evaluate the existing Phase 1 degradation curve fits forward 3-5 laps and include the trend in the snapshot (e.g. `degradation_trend_next_3_laps`)
+- [x] Add `decision_window` to the output schema (e.g. "pit within the next 2-3 laps") when the lookahead trend supports it, otherwise default to a single-lap call
+- [x] Add `rejected_alternative` and `rejected_alternative_rationale` to the output schema, enforcing that the orchestrator must cite specific snapshot fields for why it rejected the runner-up strategy
+- [x] Test that the "why not" reasoning is strictly grounded and does not hallucinate rivalries or risks not present in the snapshot fields — no new numbers invented to justify the rejection
+- [x] Test both together on a known real decision point: confirm the window framing and the rejected-alternative reasoning both stay traceable to snapshot fields, not free-floating LLM justification
+- [x] Re-run the "boring lap" test from Phase 6 — confirm lookahead doesn't manufacture false urgency out of a flat trend, and that alternative-rejection reasoning doesn't invent a rivalry that isn't there
 
 **Deliverable:** a recommendation that states a decision window (not just an instant) and explains why the top alternative was rejected — both still fully traceable to snapshot data. This is what turns the demo from "the system says pit now" into "the system reasoned through it," which reads much stronger live.
 
