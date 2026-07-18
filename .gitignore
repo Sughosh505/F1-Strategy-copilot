@@ -1,0 +1,12 @@
+# Python envs
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Local config
+.env
+
+# Strategy Copilot Caches & Temp files
+temp/
+cache/
