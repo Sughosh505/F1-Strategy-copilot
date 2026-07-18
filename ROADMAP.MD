@@ -10,8 +10,8 @@ See `AGENTS.md` for the standing rules that govern how any agent (or you) should
 
 ## Current status
 
-**Active phase:** Phase 5
-**Last completed phase:** Phase 4
+**Active phase:** Phase 6
+**Last completed phase:** Phase 5
 
 Update these two lines as you progress — this is the fastest way for anyone (including a fresh Antigravity session) to know where the project actually stands.
 
@@ -119,10 +119,10 @@ Not all of this exists yet — it's the target shape. Create directories as the 
 ## Phase 5 — Precompute Pipeline (wiring 1-4 together)
 **Goal:** Run all four agents for every car, every lap, for a full race — once — and cache it.
 
-- [ ] Implement the `for lap in 1..N: compute all agents; store field_state[lap]` loop from the architecture doc
-- [ ] Confirm output size is small (a handful of scalars × ~20 cars × ~60 laps) and fast (well under a second per race on a laptop)
-- [ ] Serialize `field_state` to disk (JSON or similar) per race, so you don't recompute on every run
-- [ ] Sanity-check a few specific laps by hand against what actually happened in the real race
+- [x] Implement the `for lap in 1..N: compute all agents; store field_state[lap]` loop from the architecture doc
+- [x] Confirm output size is small (a handful of scalars × ~20 cars × ~60 laps) and fast (well under a second per race on a laptop)
+- [x] Serialize `field_state` to disk (JSON or similar) per race, so you don't recompute on every run
+- [x] Sanity-check a few specific laps by hand against what actually happened in the real race
 
 **Deliverable:** run a script against a race, get a cached `field_state` file covering the whole race. This is the last purely rule-based phase — no LLM involved yet.
 
