@@ -10,8 +10,8 @@ See `AGENTS.md` for the standing rules that govern how any agent (or you) should
 
 ## Current status
 
-**Active phase:** Phase 6
-**Last completed phase:** Phase 5
+**Active phase:** Phase 6.5
+**Last completed phase:** Phase 6
 
 Update these two lines as you progress — this is the fastest way for anyone (including a fresh Antigravity session) to know where the project actually stands.
 
@@ -131,11 +131,11 @@ Not all of this exists yet — it's the target shape. Create directories as the 
 ## Phase 6 — Snapshot Assembly + Orchestrator (LLM synthesis)
 **Goal:** Given a selected driver + lap, assemble the strict JSON snapshot and get a grounded recommendation.
 
-- [ ] Implement the snapshot-assembly function per the schema in the architecture doc (`triggered_car`, filtered `field_context`, `sc_probability`, `historical_reference`, etc.)
-- [ ] Write the orchestrator prompt: strictly grounded, must cite which snapshot fields drove the call, structured output (`pit_now` / `stay_out` / `prep_for_sc_window` + rationale)
-- [ ] Use structured/JSON-constrained output from the LLM API so responses are reliably parseable
-- [ ] Test manually against 3-5 chosen historical moments — compare the system's call to what actually happened
-- [ ] Explicitly test a "boring" lap (nothing strategically interesting) to confirm the orchestrator doesn't manufacture false urgency
+- [x] Implement the snapshot-assembly function per the schema in the architecture doc (`triggered_car`, filtered `field_context`, `sc_probability`, `historical_reference`, etc.)
+- [x] Write the orchestrator prompt: strictly grounded, must cite which snapshot fields drove the call, structured output (`pit_now` / `stay_out` / `prep_for_sc_window` + rationale)
+- [x] Use structured/JSON-constrained output from the LLM API so responses are reliably parseable
+- [x] Test manually against 3-5 chosen historical moments — compare the system's call to what actually happened
+- [x] Explicitly test a "boring" lap (nothing strategically interesting) to confirm the orchestrator doesn't manufacture false urgency
 
 **Deliverable:** given any (driver, lap) pair from a cached race, get back a ranked, cited recommendation. This is the first point where the full pipeline is end-to-end functional.
 
