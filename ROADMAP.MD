@@ -10,10 +10,11 @@ See `AGENTS.md` for the standing rules that govern how any agent (or you) should
 
 ## Current status
 
-**Active phase:** Phase 2
-**Last completed phase:** Phase 1
+**Active phase:** Phase 3
+**Last completed phase:** Phase 2
 
 Update these two lines as you progress — this is the fastest way for anyone (including a fresh Antigravity session) to know where the project actually stands.
+
 
 ## Repo structure (target — build out as phases progress)
 
@@ -81,11 +82,11 @@ Not all of this exists yet — it's the target shape. Create directories as the 
 ## Phase 2 — Safety Car / VSC Probability Agent (rule-based)
 **Goal:** Field-wide (not per-car) probability of SC/VSC in the next 3 and 5 laps.
 
-- [ ] Pull track_status history across multiple historical races per circuit
-- [ ] Compute historical base rates of SC/VSC incidents by race-phase (e.g. early/mid/late race) per circuit
-- [ ] Implement `next_3_laps` / `next_5_laps` probability output + a short templated `basis` string
-- [ ] Handle small-sample circuits explicitly — flag low-confidence output rather than pretending precision
-- [ ] It's fine to stub this with a rough constant for circuits with insufficient data, documented as a known limitation
+- [x] Pull track_status history across multiple historical races per circuit
+- [x] Compute historical base rates of SC/VSC incidents by race-phase (e.g. early/mid/late race) per circuit
+- [x] Implement `next_3_laps` / `next_5_laps` probability output + a short templated `basis` string
+- [x] Handle small-sample circuits explicitly — flag low-confidence output rather than pretending precision
+- [x] It's fine to stub this with a rough constant for circuits with insufficient data, documented as a known limitation
 
 **Deliverable:** given a race + lap number, output SC/VSC probabilities. Standalone testable.
 
