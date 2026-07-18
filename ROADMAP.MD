@@ -10,8 +10,8 @@ See `AGENTS.md` for the standing rules that govern how any agent (or you) should
 
 ## Current status
 
-**Active phase:** Phase 3
-**Last completed phase:** Phase 2
+**Active phase:** Phase 4
+**Last completed phase:** Phase 3
 
 Update these two lines as you progress — this is the fastest way for anyone (including a fresh Antigravity session) to know where the project actually stands.
 
