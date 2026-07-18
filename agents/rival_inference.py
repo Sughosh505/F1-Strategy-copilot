@@ -101,14 +101,18 @@ def get_field_positions_and_gaps(session, current_lap):
 
     return position_map
 
-def infer_rival_strategy(session, current_lap, target_driver):
+def infer_rival_strategy(session, current_lap, target_driver, precomputed_field_deg=None):
     """
     Computes rival strategy metrics and undercut threats for target_driver at current_lap.
     Reuses Phase 1 degradation logic relationally across the field.
     Filters the 20-car field down to a concise, high-relevance field_context.
     """
     # 1. Fetch Phase 1 degradation metrics field-wide
-    field_deg = get_field_degradation(session, current_lap)
+    if precomputed_field_deg is not None:
+        field_deg = precomputed_field_deg
+    else:
+        field_deg = get_field_degradation(session, current_lap)
+
     if not field_deg:
         return None
 
