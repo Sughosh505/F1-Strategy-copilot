@@ -10,8 +10,8 @@ See `AGENTS.md` for the standing rules that govern how any agent (or you) should
 
 ## Current status
 
-**Active phase:** Phase 4
-**Last completed phase:** Phase 3
+**Active phase:** Phase 5
+**Last completed phase:** Phase 4
 
 Update these two lines as you progress — this is the fastest way for anyone (including a fresh Antigravity session) to know where the project actually stands.
 
@@ -108,9 +108,9 @@ Not all of this exists yet — it's the target shape. Create directories as the 
 ## Phase 4 — Weather Nowcast Agent (rule-based, can start as a stub)
 **Goal:** Short-horizon rain/drying trend signal.
 
-- [ ] For dry races (your initial demo set), this can be a near-stub: report stable/no-rain confidently
-- [ ] Implement a real rolling-trend version using weather channel data (rain intensity, track temp trend) for when you add a wet-race demo
-- [ ] Align weather sample timestamps to lap numbers (this is the Phase 0 quirk you documented)
+- [x] For dry races (your initial demo set), this can be a near-stub: report stable/no-rain confidently
+- [x] Implement a real rolling-trend version using weather channel data (rain intensity, track temp trend) for when you add a wet-race demo
+- [x] Align weather sample timestamps to lap numbers (this is the Phase 0 quirk you documented)
 
 **Deliverable:** given a race + lap number, output a weather trend signal. Standalone testable.
 
