@@ -95,11 +95,11 @@ Not all of this exists yet — it's the target shape. Create directories as the 
 ## Phase 3 — Rival Strategy Inference Engine (rule-based)
 **Goal:** For each car, pit-window likelihood for nearby competitors + `undercut_threat` flags.
 
-- [ ] Reuse Phase 1's degradation logic, applied relationally across the field
-- [ ] Compute pit-probability per car based on stint length vs historical typical pit lap for that compound/track
-- [ ] Compute `undercut_threat` for cars within realistic pitting range of the evaluated driver
-- [ ] Build the relevance filter — only nearby/threatening cars make it into a driver's `field_context`, not all 20
-- [ ] Test: for a known real undercut moment in your chosen demo race, confirm the engine flags the threat *before* it happened in reality
+- [x] Reuse Phase 1's degradation logic, applied relationally across the field
+- [x] Compute pit-probability per car based on stint length vs historical typical pit lap for that compound/track
+- [x] Compute `undercut_threat` for cars within realistic pitting range of the evaluated driver
+- [x] Build the relevance filter — only nearby/threatening cars make it into a driver's `field_context`, not all 20
+- [x] Test: for a known real undercut moment in your chosen demo race, confirm the engine flags the threat *before* it happened in reality
 
 **Deliverable:** given a race + lap number + driver, output a filtered list of relevant rival cars with pit probabilities and undercut flags.
 
